@@ -1,0 +1,60 @@
+<html>
+<h2>Binaru Search</h2>
+<div id="array"></div>
+<div id="result"></div>
+<div id="result2"></div>
+<script>
+var primes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97];
+document.getElementById('array').innerHTML = primes;
+
+var testVal = 67;
+document.getElementById('result').innerHTML = 'index of ' + testVal + ' = ' + binarySearch(primes, testVal);
+
+testVal = 40;
+document.getElementById('result2').innerHTML = 'index of ' + testVal + ' = ' + binarySearch(primes, testVal);
+
+
+
+function binarySearch(data, searchValue){
+
+  console.log('-----Looking for ' + searchValue + '-----');
+
+  if (data == null || data.length == 0)
+    return -1;
+
+
+  var min = 0;
+  var max = data.length - 1;
+
+  // first check the smallest and largest value
+
+  var val = data[min];
+
+  if (val > searchValue)
+    return -1;
+
+  val = data[max];
+
+  if (val < searchValue)
+    return -1;
+
+  // now start the binary search
+  while (max >= min )
+  {
+    var middleIndex = Math.floor((max - min)/2) + min;
+    console.log('max = ' + max + ', min = ' + min + ', middle = ' + middleIndex )
+    var val = data[middleIndex];
+
+    if (val == searchValue)
+      return middleIndex;
+    else if (val > searchValue)
+      max = middleIndex - 1;
+    else
+      min = middleIndex + 1;
+  }
+
+  return -1;
+
+}
+</script>
+</html>
